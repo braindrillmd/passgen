@@ -1,0 +1,9 @@
+D:\Home\Valery\GitHub\passgen\passgen\bin\Debug\passgen.exe.config
+D:\Home\Valery\GitHub\passgen\passgen\bin\Debug\passgen.exe
+D:\Home\Valery\GitHub\passgen\passgen\bin\Debug\passgen.pdb
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.csprojResolveAssemblyReference.cache
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.Form1.resources
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.Properties.Resources.resources
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.csproj.GenerateResource.Cache
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.exe
+D:\Home\Valery\GitHub\passgen\passgen\obj\Debug\passgen.pdb
