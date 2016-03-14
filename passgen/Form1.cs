@@ -84,10 +84,12 @@ namespace passgen
             if (checkBoxMultiple.Checked)
             {
                 state.generateMultiple();
+                numericUpDownHowMany.Enabled = true;
             }
             else
             {
                 state.generateNotMultiple();
+                numericUpDownHowMany.Enabled = false;
             }
         }
 
@@ -113,17 +115,39 @@ namespace passgen
             }
 
             textBoxPasswordList.Clear();
-            textBoxPasswordList.AppendText(password.generate());
+
+            if (state.isMultiple())
+            {
+                for (int i = 0; i < state.getPasswordsNumber(); i++)
+                {
+                    textBoxPasswordList.AppendText(password.generate());
+                    if (i != state.getPasswordsNumber() - 1)
+                    {
+                        textBoxPasswordList.AppendText("\n");
+                    }
+                }
+            }
+            else
+            {
+                textBoxPasswordList.AppendText(password.generate());
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             state = new PassGenState();
+            numericUpDownHowMany.Enabled = false;
         }
 
         private void numericUpDownCharacters_ValueChanged(object sender, EventArgs e)
         {
             state.setCharactersNumber((int)numericUpDownCharacters.Value);
+        }
+
+        private void numericUpDownHowMany_ValueChanged(object sender, EventArgs e)
+        {
+            state.setPasswordsNumber((int)numericUpDownHowMany.Value);
         }
     }
 
@@ -131,9 +155,11 @@ namespace passgen
     {
         private string charactersSet;
         int length;
+        Random rand;
 
         public Password(int passwordLength)
         {
+            rand = new Random();
             length = passwordLength;
             charactersSet = "";        }
 
@@ -160,12 +186,18 @@ namespace passgen
         public string generate()
         {
             string password = "";
-            Random rand = new Random();
 
-            for (int i = 0; i < length; i++)
+            if (charactersSet == "")
             {
-                password += charactersSet.ElementAt(rand.Next(charactersSet.Length));
-                //System.Threading.Thread.Sleep(100);
+                MessageBox.Show("Choose any of symbol sets!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                for (int i = 0; i < length; i++)
+                {
+                    password += charactersSet.ElementAt(rand.Next(charactersSet.Length));
+                }
             }
 
             return password;
