@@ -12,24 +12,163 @@ namespace passgen
 {
     public partial class Form1 : Form
     {
+        PassGenState state;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxDigits_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxDigits.Checked)
+            {
+                state.useDigits();
+            }
+            else
+            {
+                state.useNotDigits();
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void checkBoxUpperCaseLetters_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxUpperCaseLetters.Checked)
+            {
+                state.useUpperCaseLetters();
+            }
+            else
+            {
+                state.useNotUpperCaseLetters();
+            }
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void checkBoxLowerCaseLetters_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBoxLowerCaseLetters.Checked)
+            {
+                state.useLowerCaseLetters();
+            }
+            else
+            {
+                state.useNotLowerCaseLetters();
+            }
+        }
 
+        private void checkBoxSpecialCharacters_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSpecialCharacters.Checked)
+            {
+                state.useSpecialCharacters();
+            }
+            else
+            {
+                state.useNotSpecialCharacters();
+            }
+        }
+
+        private void checkBoxMemorizeable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMemorizeable.Checked)
+            {
+                state.setMemorizableMode();
+            }
+            else
+            {
+                state.unsetMemorizableMode();
+            }
+        }
+
+        private void checkBoxMultiple_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMultiple.Checked)
+            {
+                state.generateMultiple();
+            }
+            else
+            {
+                state.generateNotMultiple();
+            }
+        }
+
+        private void buttonGo_Click(object sender, EventArgs e)
+        {
+            Password password = new Password(state.getCharactersNumber());
+
+            if (state.digitsUsed())
+            {
+                password.addDigits();
+            }
+            if (state.lowerCaseLettersUsed())
+            {
+                password.addLowerCaseLetters();
+            }
+            if (state.upperCaseLettersUsed())
+            {
+                password.addUpperCaseLetters();
+            }
+            if (state.specialCharactersUsed())
+            {
+                password.addSpecialCharacters();
+            }
+
+            textBoxPasswordList.Clear();
+            textBoxPasswordList.AppendText(password.generate());
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            state = new PassGenState();
+        }
+
+        private void numericUpDownCharacters_ValueChanged(object sender, EventArgs e)
+        {
+            state.setCharactersNumber((int)numericUpDownCharacters.Value);
+        }
+    }
+
+    class Password
+    {
+        private string charactersSet;
+        int length;
+
+        public Password(int passwordLength)
+        {
+            length = passwordLength;
+            charactersSet = "";        }
+
+        public void addDigits()
+        {
+            charactersSet += "1234567890";
+        }
+
+        public void addLowerCaseLetters()
+        {
+            charactersSet += "abcdefghijklmnopqrstuvwxyz";
+        }
+
+        public void addUpperCaseLetters()
+        {
+            charactersSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+
+        public void addSpecialCharacters()
+        {
+            charactersSet += "~!@#;%:&*^()[]{}\\|/><,$'.";
+        }
+
+        public string generate()
+        {
+            string password = "";
+            Random rand = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                password += charactersSet.ElementAt(rand.Next(charactersSet.Length));
+                //System.Threading.Thread.Sleep(100);
+            }
+
+            return password;
         }
     }
 
@@ -42,6 +181,9 @@ namespace passgen
         private bool memorizable;
         private bool multiple;
 
+        int charactersNumber;
+        int passwordsNumber;
+
         public PassGenState()
         {
             digits = false;
@@ -50,6 +192,33 @@ namespace passgen
             specialCharacters = false;
             memorizable = false;
             multiple = false;
+
+            charactersNumber = 0;
+            passwordsNumber = 0;
+        }
+
+        public int getCharactersNumber()
+        {
+            return charactersNumber;
+        }
+
+        public PassGenState setCharactersNumber(int number)
+        {
+            charactersNumber = number;
+
+            return this;
+        }
+
+        public int getPasswordsNumber()
+        {
+            return passwordsNumber;
+        }
+
+        public PassGenState setPasswordsNumber(int number)
+        {
+            passwordsNumber = number;
+
+            return this;
         }
 
         public PassGenState useDigits()

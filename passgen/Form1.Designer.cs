@@ -54,6 +54,7 @@
             this.checkBoxDigits.TabIndex = 0;
             this.checkBoxDigits.Text = "Digits";
             this.checkBoxDigits.UseVisualStyleBackColor = true;
+            this.checkBoxDigits.CheckedChanged += new System.EventHandler(this.checkBoxDigits_CheckedChanged);
             // 
             // checkBoxUpperCaseLetters
             // 
@@ -64,6 +65,7 @@
             this.checkBoxUpperCaseLetters.TabIndex = 1;
             this.checkBoxUpperCaseLetters.Text = "Upper case letters";
             this.checkBoxUpperCaseLetters.UseVisualStyleBackColor = true;
+            this.checkBoxUpperCaseLetters.CheckedChanged += new System.EventHandler(this.checkBoxUpperCaseLetters_CheckedChanged);
             // 
             // checkBoxLowerCaseLetters
             // 
@@ -74,7 +76,7 @@
             this.checkBoxLowerCaseLetters.TabIndex = 2;
             this.checkBoxLowerCaseLetters.Text = "Lower case letters";
             this.checkBoxLowerCaseLetters.UseVisualStyleBackColor = true;
-            this.checkBoxLowerCaseLetters.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxLowerCaseLetters.CheckedChanged += new System.EventHandler(this.checkBoxLowerCaseLetters_CheckedChanged);
             // 
             // checkBoxSpecialCharacters
             // 
@@ -85,16 +87,19 @@
             this.checkBoxSpecialCharacters.TabIndex = 3;
             this.checkBoxSpecialCharacters.Text = "Special characters";
             this.checkBoxSpecialCharacters.UseVisualStyleBackColor = true;
+            this.checkBoxSpecialCharacters.CheckedChanged += new System.EventHandler(this.checkBoxSpecialCharacters_CheckedChanged);
             // 
             // checkBoxMemorizeable
             // 
             this.checkBoxMemorizeable.AutoSize = true;
+            this.checkBoxMemorizeable.Enabled = false;
             this.checkBoxMemorizeable.Location = new System.Drawing.Point(12, 104);
             this.checkBoxMemorizeable.Name = "checkBoxMemorizeable";
             this.checkBoxMemorizeable.Size = new System.Drawing.Size(85, 17);
             this.checkBoxMemorizeable.TabIndex = 4;
             this.checkBoxMemorizeable.Text = "Memorizable";
             this.checkBoxMemorizeable.UseVisualStyleBackColor = true;
+            this.checkBoxMemorizeable.CheckedChanged += new System.EventHandler(this.checkBoxMemorizeable_CheckedChanged);
             // 
             // labelCharacters
             // 
@@ -104,7 +109,6 @@
             this.labelCharacters.Size = new System.Drawing.Size(61, 13);
             this.labelCharacters.TabIndex = 5;
             this.labelCharacters.Text = "Characters:";
-            this.labelCharacters.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonGo
             // 
@@ -114,16 +118,19 @@
             this.buttonGo.TabIndex = 7;
             this.buttonGo.Text = "Go!";
             this.buttonGo.UseVisualStyleBackColor = true;
+            this.buttonGo.Click += new System.EventHandler(this.buttonGo_Click);
             // 
             // checkBoxMultiple
             // 
             this.checkBoxMultiple.AutoSize = true;
+            this.checkBoxMultiple.Enabled = false;
             this.checkBoxMultiple.Location = new System.Drawing.Point(12, 127);
             this.checkBoxMultiple.Name = "checkBoxMultiple";
             this.checkBoxMultiple.Size = new System.Drawing.Size(62, 17);
             this.checkBoxMultiple.TabIndex = 8;
             this.checkBoxMultiple.Text = "Multiple";
             this.checkBoxMultiple.UseVisualStyleBackColor = true;
+            this.checkBoxMultiple.CheckedChanged += new System.EventHandler(this.checkBoxMultiple_CheckedChanged);
             // 
             // labelHowMany
             // 
@@ -133,7 +140,6 @@
             this.labelHowMany.Size = new System.Drawing.Size(60, 13);
             this.labelHowMany.TabIndex = 9;
             this.labelHowMany.Text = "How many:";
-            this.labelHowMany.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // numericUpDownCharacters
             // 
@@ -146,9 +152,11 @@
             this.numericUpDownCharacters.Name = "numericUpDownCharacters";
             this.numericUpDownCharacters.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownCharacters.TabIndex = 11;
+            this.numericUpDownCharacters.ValueChanged += new System.EventHandler(this.numericUpDownCharacters_ValueChanged);
             // 
             // numericUpDownHowMany
             // 
+            this.numericUpDownHowMany.Enabled = false;
             this.numericUpDownHowMany.Location = new System.Drawing.Point(152, 80);
             this.numericUpDownHowMany.Name = "numericUpDownHowMany";
             this.numericUpDownHowMany.Size = new System.Drawing.Size(120, 20);
@@ -182,6 +190,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PassGen";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCharacters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHowMany)).EndInit();
             this.ResumeLayout(false);
