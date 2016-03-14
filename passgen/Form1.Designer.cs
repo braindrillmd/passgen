@@ -123,7 +123,6 @@
             // checkBoxMultiple
             // 
             this.checkBoxMultiple.AutoSize = true;
-            this.checkBoxMultiple.Enabled = false;
             this.checkBoxMultiple.Location = new System.Drawing.Point(12, 127);
             this.checkBoxMultiple.Name = "checkBoxMultiple";
             this.checkBoxMultiple.Size = new System.Drawing.Size(62, 17);
@@ -156,17 +155,18 @@
             // 
             // numericUpDownHowMany
             // 
-            this.numericUpDownHowMany.Enabled = false;
             this.numericUpDownHowMany.Location = new System.Drawing.Point(152, 80);
             this.numericUpDownHowMany.Name = "numericUpDownHowMany";
             this.numericUpDownHowMany.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownHowMany.TabIndex = 12;
+            this.numericUpDownHowMany.ValueChanged += new System.EventHandler(this.numericUpDownHowMany_ValueChanged);
             // 
             // textBoxPasswordList
             // 
             this.textBoxPasswordList.Location = new System.Drawing.Point(12, 164);
             this.textBoxPasswordList.Multiline = true;
             this.textBoxPasswordList.Name = "textBoxPasswordList";
+            this.textBoxPasswordList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxPasswordList.Size = new System.Drawing.Size(260, 185);
             this.textBoxPasswordList.TabIndex = 13;
             // 
@@ -187,6 +187,7 @@
             this.Controls.Add(this.checkBoxLowerCaseLetters);
             this.Controls.Add(this.checkBoxUpperCaseLetters);
             this.Controls.Add(this.checkBoxDigits);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PassGen";
